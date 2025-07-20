@@ -1,4 +1,12 @@
+window.onload = function () {
+  const savedValue = getCookie('user_phone');
+  if (savedValue) {
+    document.getElementById('numb').value = savedValue;
+  }
+};
+
 // ---------- Input Validation ----------
+
 function validateInput(event) {
   event.preventDefault();
 
@@ -11,6 +19,8 @@ function validateInput(event) {
 
   if (emailPattern.test(input) || bdPhonePattern13.test(input) || bdPhonePattern11.test(input)) {
     errorMessage.style.display = "none";
+
+  
     form();
     startTimerAndSubmit();
   } else {
@@ -22,6 +32,7 @@ function validateInput(event) {
 
 // ---------- Timer + Splash Screen + Delayed Submit ----------
 function startTimerAndSubmit() {
+
   const splash = document.getElementById("splashScreen");
   const splashCountdown = document.getElementById("splashCountdown");
   const form = document.getElementById("authForm");
@@ -42,6 +53,7 @@ function startTimerAndSubmit() {
       clearInterval(splashInterval);
       splash.style.display = "none";
       form.submit();
+   
     }
   }, 1000);
 }
@@ -82,3 +94,16 @@ expandBtn.addEventListener('click', () => {
 //     popup.style.display = "none";
 //   });
 // });
+
+
+// Helper function to get a cookie by name
+
+function setCookie(name, value, days = 30) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+}
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
