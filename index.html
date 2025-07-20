@@ -6,7 +6,37 @@
   <title>Free Y-Fi Captive</title>
   <link rel="stylesheet" href="style.css" />
   <script src="convars.js"></script>
+<style>
+   .video-wrapper {
+      width: 300px;
+      height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
 
+    .video-wrapper video {
+      height: auto;
+      width: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .unmute-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+</style>
 </head>
 <body>
   <div class="container">
@@ -113,8 +143,14 @@
 
   <!-- Large Ad Slot (300x600) -->
   <div class="splash-large-ad">
-    <div class="ad-placeholder">
-        <iframe style="border: none;" width="300" height="600" src="https://ad.freeyfi.com/mediacom/300x600/"></iframe>
+    <div class="ad-placeholder" style="background-color: black;">
+ <div class="video-wrapper" onclick="window.open('https://www.daraz.com.bd/products/chaka-washing-powder-all-in-1-500-gm-i56532-s430966.html', '_blank')">
+  <video id="promoVideo" autoplay loop muted playsinline>
+    <source src="https://ad.freeyfi.com/mediacom/chaka.mp4" type="video/mp4">
+  </video>
+  <button class="unmute-btn" onclick="toggleMute(event)">🔊</button>
+</div>
+
 
                             <!-- <ins data-freeyfi-slotid="74"
                                  data-freeyfi-ct0="%%CLICK_URL_UNESC%%"
@@ -200,6 +236,13 @@ function getCookie(name) {
     }
 })();
 </script>
-
+<script>
+  function toggleMute(e) {
+    e.stopPropagation();
+    const video = document.getElementById('promoVideo');
+    video.muted = !video.muted;
+    e.target.textContent = video.muted ? '🔊' : '🔇';
+  }
+</script>
 </body>
 </html>
