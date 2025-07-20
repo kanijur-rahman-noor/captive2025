@@ -37,7 +37,7 @@ function startTimerAndSubmit() {
   const splashCountdown = document.getElementById("splashCountdown");
   const form = document.getElementById("authForm");
 
-  let duration = 30;
+  let duration = 10;
   let elapsed = 0;
 
   // Show splash
